@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
   push:
     branches:
-      - main
+      - master
     paths:
       - terraform/**
 
@@ -34,10 +34,10 @@ jobs:
       - name: Terraform plan
         uses: dflook/terraform-plan@v2
         with:
-          path: .
+          path: terraform
 
       - name: Terraform apply
         uses: dflook/terraform-apply@v2
         with:
-          path: .
+          path: terraform
           auto_approve: true
