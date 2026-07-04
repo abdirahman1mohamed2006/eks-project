@@ -38,8 +38,6 @@ resource "aws_eks_node_group" "this" {
   }
 
   instance_types = var.node_group_instance_types
-
-  depends_on = [aws_iam_role_policy_attachment.node_group_policies]
 }
 
 
