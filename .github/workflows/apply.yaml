@@ -15,6 +15,10 @@ permissions:
 env:
   AWS_REGION: eu-west-1
 
+concurrency:
+  group: terraform-apply-${{ github.ref }}
+  cancel-in-progress: false
+
 jobs:
   terraform:
     runs-on: ubuntu-24.04
