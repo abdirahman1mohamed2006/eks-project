@@ -7,10 +7,12 @@ module "vpc" {
 }
 
 data "terraform_remote_state" "bootstrap" {
-  backend = "local"
+  backend = "s3"
 
   config = {
-    path = "${path.root}/../bootstrap/terraform.tfstate"
+    bucket = var.bootstrap_state_bucket
+    key    = var.bootstrap_state_key
+    region = var.aws_region
   }
 }
 

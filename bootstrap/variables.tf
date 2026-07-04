@@ -16,6 +16,18 @@ variable "github_actions_role_name" {
   default     = "github-actions-terraform-role"
 }
 
+variable "tf_state_bucket_name" {
+  description = "S3 bucket name for Terraform remote state"
+  type        = string
+  default     = "eks-project-bootstrap-tfstate-abdirahman-2006"
+}
+
+variable "tf_state_key" {
+  description = "Object key for bootstrap terraform state"
+  type        = string
+  default     = "bootstrap/terraform.tfstate"
+}
+
 variable "tags" {
   description = "Common tags for bootstrap resources"
   type        = map(string)

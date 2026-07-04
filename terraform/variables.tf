@@ -46,6 +46,18 @@ variable "oidc_provider_url" {
   default     = ""
 }
 
+variable "bootstrap_state_bucket" {
+  description = "S3 bucket that stores bootstrap Terraform state"
+  type        = string
+  default     = "eks-project-bootstrap-tfstate-abdirahman-2006"
+}
+
+variable "bootstrap_state_key" {
+  description = "S3 object key for bootstrap Terraform state"
+  type        = string
+  default     = "bootstrap/terraform.tfstate"
+}
+
 variable "tags" {
   description = "Common tags for Terraform-managed resources"
   type        = map(string)
