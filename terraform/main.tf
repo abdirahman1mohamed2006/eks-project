@@ -1,7 +1,7 @@
 
 
 module "vpc" {
-  source = "./terraform/module/VPC"
+  source = "./module/VPC"
 
   aws_region = var.aws_region
 }
@@ -10,12 +10,12 @@ data "terraform_remote_state" "bootstrap" {
   backend = "local"
 
   config = {
-    path = "${path.root}/bootstrap/terraform.tfstate"
+    path = "${path.root}/../bootstrap/terraform.tfstate"
   }
 }
 
 module "irsa" {
-  source = "./terraform/module/IAM"
+  source = "./module/IAM"
 
   github_repo_pattern       = var.github_repo_pattern
   route53_hosted_zone_arns  = var.route53_hosted_zone_arns
@@ -25,7 +25,7 @@ module "irsa" {
 }
 
 module "eks" {
-  source = "./terraform/module/EKS"
+  source = "./module/EKS"
 
   cluster_name       = var.cluster_name
   kubernetes_version = var.kubernetes_version
@@ -48,7 +48,7 @@ module "eks" {
 }
 
 module "ecr" {
-  source = "./terraform/module/ECR"
+  source = "./module/ECR"
 
   ecr_repository_name = var.ecr_repository_name
   tags                = var.tags
