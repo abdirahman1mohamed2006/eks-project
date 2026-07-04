@@ -1,0 +1,32 @@
+replicas: 1
+
+adminUser: admin
+
+persistence:
+  enabled: true
+  size: 10Gi
+
+service:
+  type: ClusterIP
+  port: 80
+
+ingress:
+  enabled: true
+  ingressClassName: nginx
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+  hosts:
+    - grafana.abdirahman.forum
+  tls:
+    - secretName: grafana-tls
+      hosts:
+        - grafana.abdirahman.forum
+
+resources:
+  requests:
+    cpu: 100m
+    memory: 256Mi
+  limits:
+    cpu: 500m
+    memory: 512Mi
+

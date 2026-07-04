@@ -1,0 +1,24 @@
+# Nested repo backup metadata
+**/.git-nested-backup/
+
+# Terraform local state and providers
+**/.terraform/
+**/.terraform.lock.hcl
+*.tfstate
+*.tfstate.*
+crash.log
+
+# OS/editor noise
+.DS_Store
+Thumbs.db
+.vscode/
+
+# Python cache
+**/__pycache__/
+*.pyc
+
+# Ignore local Terraform/provider binaries
+**/.terraform/
+windows_386/
+**/.git-nested-backup/
+

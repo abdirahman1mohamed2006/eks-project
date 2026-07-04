@@ -1,0 +1,22 @@
+provider:
+  name: aws
+
+env:
+  - name: AWS_DEFAULT_REGION
+    value: eu-west-1
+
+sources:
+  - ingress
+  - service
+
+domainFilters:
+  - abdirahman.forum
+
+txtOwnerId: external-dns
+policy: sync
+
+serviceAccount:
+  create: true
+  name: external-dns
+  annotations:
+    eks.amazonaws.com/role-arn: arn:aws:iam::820242908024:role/externaldns
