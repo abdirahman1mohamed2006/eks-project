@@ -5,6 +5,8 @@ on:
   push:
     branches:
       - main
+    paths:
+      - terraform/**
 
 permissions:
   id-token: write
@@ -32,10 +34,10 @@ jobs:
       - name: Terraform plan
         uses: dflook/terraform-plan@v2
         with:
-          path: terraform
+          path: .
 
       - name: Terraform apply
         uses: dflook/terraform-apply@v2
         with:
-          path: terraform
+          path: .
           auto_approve: true
