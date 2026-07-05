@@ -19,13 +19,23 @@ data "terraform_remote_state" "bootstrap" {
 module "irsa" {
   source = "./module/IAM"
 
-  github_repo_pattern       = var.github_repo_pattern
-  route53_hosted_zone_arns  = var.route53_hosted_zone_arns
-  oidc_provider_arn         = data.terraform_remote_state.bootstrap.outputs.github_actions_oidc_provider_arn
-  oidc_provider_url         = data.terraform_remote_state.bootstrap.outputs.github_actions_oidc_provider_url
-  eks_oidc_provider_arn     = module.eks.oidc_provider_arn
-  eks_oidc_provider_url     = module.eks.oidc_provider_url
-  tags                      = var.tags
+  github_repo_pattern                          = var.github_repo_pattern
+  route53_hosted_zone_arns                     = var.route53_hosted_zone_arns
+  cert_manager_role_name                       = var.cert_manager_role_name
+  cert_manager_service_account_namespace       = var.cert_manager_service_account_namespace
+  cert_manager_service_account_name            = var.cert_manager_service_account_name
+  external_dns_role_name                       = var.external_dns_role_name
+  external_dns_service_account_namespace       = var.external_dns_service_account_namespace
+  external_dns_service_account_name            = var.external_dns_service_account_name
+  ebs_csi_service_account_namespace            = var.ebs_csi_service_account_namespace
+  ebs_csi_service_account_name                 = var.ebs_csi_service_account_name
+  cluster_autoscaler_service_account_namespace = var.cluster_autoscaler_service_account_namespace
+  cluster_autoscaler_service_account_name      = var.cluster_autoscaler_service_account_name
+  oidc_provider_arn                            = data.terraform_remote_state.bootstrap.outputs.github_actions_oidc_provider_arn
+  oidc_provider_url                            = data.terraform_remote_state.bootstrap.outputs.github_actions_oidc_provider_url
+  eks_oidc_provider_arn                        = module.eks.oidc_provider_arn
+  eks_oidc_provider_url                        = module.eks.oidc_provider_url
+  tags                                         = var.tags
 
   depends_on = [module.eks]
 }
@@ -46,8 +56,8 @@ module "eks" {
   public_subnet_2_id = module.vpc.public_subnet_2_id
   public_subnet_3_id = module.vpc.public_subnet_3_id
 
-  cluster_role_arn = module.irsa.cluster_role_arn
-  ebs_csi_role_arn = module.irsa.ebs_csi_role_arn
+  cluster_role_arn    = module.irsa.cluster_role_arn
+  ebs_csi_role_arn    = module.irsa.ebs_csi_role_arn
   node_group_role_arn = module.irsa.node_group_role_arn
 
   tags = var.tags

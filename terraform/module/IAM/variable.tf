@@ -13,9 +13,29 @@ variable "cert_manager_role_name" {
   default = "cert-manager"
 }
 
+variable "cert_manager_service_account_namespace" {
+  type    = string
+  default = "cert-manager"
+}
+
+variable "cert_manager_service_account_name" {
+  type    = string
+  default = "cert-manager"
+}
+
 variable "external_dns_role_name" {
   type    = string
   default = "externaldns"
+}
+
+variable "external_dns_service_account_namespace" {
+  type    = string
+  default = "external-dns"
+}
+
+variable "external_dns_service_account_name" {
+  type    = string
+  default = "external-dns"
 }
 
 variable "oidc_provider_arn" {

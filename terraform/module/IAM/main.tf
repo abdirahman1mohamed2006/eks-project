@@ -53,7 +53,7 @@ resource "aws_iam_role_policy_attachment" "worker_node_policies" {
 
 
 resource "aws_iam_role" "cert_manager_role" {
-  name = "cert-manager"
+  name = var.cert_manager_role_name
 
   assume_role_policy = jsonencode({
     Version = "2012-10-17"
@@ -66,7 +66,7 @@ resource "aws_iam_role" "cert_manager_role" {
         Action = "sts:AssumeRoleWithWebIdentity"
         Condition = {
           StringEquals = {
-            "${var.oidc_provider_url}:sub" = "system:serviceaccount:cert-manager:cert-manager"
+            "${var.oidc_provider_url}:sub" = "system:serviceaccount:${var.cert_manager_service_account_namespace}:${var.cert_manager_service_account_name}"
             "${var.oidc_provider_url}:aud" = "sts.amazonaws.com"
           }
         }
@@ -102,7 +102,7 @@ resource "aws_iam_role_policy_attachment" "cert_manager_attach" {
 
 
 resource "aws_iam_role" "external_dns_role" {
-  name = "externaldns"
+  name = var.external_dns_role_name
 
   assume_role_policy = jsonencode({
     Version = "2012-10-17"
@@ -115,7 +115,7 @@ resource "aws_iam_role" "external_dns_role" {
         Action = "sts:AssumeRoleWithWebIdentity"
         Condition = {
           StringEquals = {
-            "${var.oidc_provider_url}:sub" = "system:serviceaccount:external-dns:external-dns"
+            "${var.oidc_provider_url}:sub" = "system:serviceaccount:${var.external_dns_service_account_namespace}:${var.external_dns_service_account_name}"
             "${var.oidc_provider_url}:aud" = "sts.amazonaws.com"
           }
         }

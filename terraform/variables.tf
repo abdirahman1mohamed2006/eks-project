@@ -34,6 +34,66 @@ variable "route53_hosted_zone_arns" {
   default     = ["arn:aws:route53:::hostedzone/Z10354822X25ZQ06MIGTG"]
 }
 
+variable "cert_manager_role_name" {
+  description = "IAM role name for cert-manager IRSA"
+  type        = string
+  default     = "cert-manager"
+}
+
+variable "cert_manager_service_account_namespace" {
+  description = "Kubernetes namespace for cert-manager service account"
+  type        = string
+  default     = "cert-manager"
+}
+
+variable "cert_manager_service_account_name" {
+  description = "Kubernetes service account name for cert-manager"
+  type        = string
+  default     = "cert-manager"
+}
+
+variable "external_dns_role_name" {
+  description = "IAM role name for external-dns IRSA"
+  type        = string
+  default     = "externaldns"
+}
+
+variable "external_dns_service_account_namespace" {
+  description = "Kubernetes namespace for external-dns service account"
+  type        = string
+  default     = "external-dns"
+}
+
+variable "external_dns_service_account_name" {
+  description = "Kubernetes service account name for external-dns"
+  type        = string
+  default     = "external-dns"
+}
+
+variable "ebs_csi_service_account_namespace" {
+  description = "Kubernetes namespace for EBS CSI service account"
+  type        = string
+  default     = "kube-system"
+}
+
+variable "ebs_csi_service_account_name" {
+  description = "Kubernetes service account name for EBS CSI"
+  type        = string
+  default     = "ebs-csi-controller-sa"
+}
+
+variable "cluster_autoscaler_service_account_namespace" {
+  description = "Kubernetes namespace for cluster-autoscaler service account"
+  type        = string
+  default     = "kube-system"
+}
+
+variable "cluster_autoscaler_service_account_name" {
+  description = "Kubernetes service account name for cluster-autoscaler"
+  type        = string
+  default     = "cluster-autoscaler"
+}
+
 variable "oidc_provider_arn" {
   description = "OIDC provider ARN for IRSA roles"
   type        = string

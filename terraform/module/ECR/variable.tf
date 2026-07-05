@@ -1,6 +1,6 @@
 variable "ecr_repository_name" {
-    type        = string
-  default     = "eks-assignment"
+  type    = string
+  default = "eks-assignment"
 }
 
 variable "image_tag_mutability" {
