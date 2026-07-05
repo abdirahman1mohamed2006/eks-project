@@ -23,7 +23,11 @@ module "irsa" {
   route53_hosted_zone_arns  = var.route53_hosted_zone_arns
   oidc_provider_arn         = data.terraform_remote_state.bootstrap.outputs.github_actions_oidc_provider_arn
   oidc_provider_url         = data.terraform_remote_state.bootstrap.outputs.github_actions_oidc_provider_url
+  eks_oidc_provider_arn     = module.eks.oidc_provider_arn
+  eks_oidc_provider_url     = module.eks.oidc_provider_url
   tags                      = var.tags
+
+  depends_on = [module.eks]
 }
 
 module "eks" {

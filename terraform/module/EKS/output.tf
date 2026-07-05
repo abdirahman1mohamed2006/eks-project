@@ -33,3 +33,11 @@ output "kubeconfig" {
     region       = "eu-west-1"
   }
 }
+
+output "oidc_provider_arn" {
+  value = aws_iam_openid_connect_provider.eks.arn
+}
+
+output "oidc_provider_url" {
+  value = trimprefix(aws_eks_cluster.this.identity[0].oidc[0].issuer, "https://")
+}

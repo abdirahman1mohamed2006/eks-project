@@ -20,12 +20,24 @@ variable "external_dns_role_name" {
 
 variable "oidc_provider_arn" {
   type        = string
-  description = "ARN of the EKS OIDC provider for IRSA"
+  description = "ARN of the GitHub Actions OIDC provider"
 }
 
 variable "oidc_provider_url" {
   type        = string
-  description = "URL of the EKS OIDC provider for IRSA"
+  description = "URL of the GitHub Actions OIDC provider"
+}
+
+variable "eks_oidc_provider_arn" {
+  type        = string
+  description = "ARN of the EKS cluster OIDC provider for IRSA"
+  default     = ""
+}
+
+variable "eks_oidc_provider_url" {
+  type        = string
+  description = "URL of the EKS cluster OIDC provider for IRSA"
+  default     = ""
 }
 
 variable "ebs_csi_service_account_namespace" {
