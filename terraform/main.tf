@@ -36,8 +36,6 @@ module "irsa" {
   eks_oidc_provider_arn                        = module.eks.oidc_provider_arn
   eks_oidc_provider_url                        = module.eks.oidc_provider_url
   tags                                         = var.tags
-
-  depends_on = [module.eks]
 }
 
 module "eks" {
@@ -57,10 +55,21 @@ module "eks" {
   public_subnet_3_id = module.vpc.public_subnet_3_id
 
   cluster_role_arn    = module.irsa.cluster_role_arn
-  ebs_csi_role_arn    = module.irsa.ebs_csi_role_arn
+  ebs_csi_role_arn    = null
   node_group_role_arn = module.irsa.node_group_role_arn
 
   tags = var.tags
+}
+
+resource "aws_eks_addon" "ebs_csi" {
+  cluster_name             = module.eks.cluster_name
+  addon_name               = "aws-ebs-csi-driver"
+  service_account_role_arn = module.irsa.ebs_csi_role_arn
+
+  resolve_conflicts_on_create = "OVERWRITE"
+  resolve_conflicts_on_update = "OVERWRITE"
+
+  depends_on = [module.eks, module.irsa]
 }
 
 module "ecr" {

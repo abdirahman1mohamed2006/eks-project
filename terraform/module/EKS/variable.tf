@@ -86,7 +86,8 @@ variable "cluster_role_arn" {
 }
 
 variable "ebs_csi_role_arn" {
-  type = string
+  type    = string
+  default = null
 }
 
 variable "tags" {
