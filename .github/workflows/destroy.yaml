@@ -11,7 +11,8 @@ on:
   push:
     branches:
       - main
-
+    paths:
+      - terraform/**
 
 
 permissions:
@@ -38,3 +39,5 @@ jobs:
       
       -  name: Terraform destroy
          uses: dflook/terraform-destroy@v2
+         with:
+          path: terraform
