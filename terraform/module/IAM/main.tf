@@ -61,13 +61,13 @@ resource "aws_iam_role" "cert_manager_role" {
       {
         Effect = "Allow"
         Principal = {
-          Federated = var.oidc_provider_arn
+          Federated = var.eks_oidc_provider_arn
         }
         Action = "sts:AssumeRoleWithWebIdentity"
         Condition = {
           StringEquals = {
-            "${var.oidc_provider_url}:sub" = "system:serviceaccount:${var.cert_manager_service_account_namespace}:${var.cert_manager_service_account_name}"
-            "${var.oidc_provider_url}:aud" = "sts.amazonaws.com"
+            "${var.eks_oidc_provider_url}:sub" = "system:serviceaccount:${var.cert_manager_service_account_namespace}:${var.cert_manager_service_account_name}"
+            "${var.eks_oidc_provider_url}:aud" = "sts.amazonaws.com"
           }
         }
       }
@@ -84,8 +84,20 @@ resource "aws_iam_policy" "cert_manager_policy" {
       {
         Effect = "Allow"
         Action = [
-          "route53:GetChange",
-          "route53:ListHostedZonesByName",
+          "route53:ListHostedZonesByName"
+        ]
+        Resource = "*"
+      },
+      {
+        Effect = "Allow"
+        Action = [
+          "route53:GetChange"
+        ]
+        Resource = "arn:aws:route53:::change/*"
+      },
+      {
+        Effect = "Allow"
+        Action = [
           "route53:ChangeResourceRecordSets",
           "route53:ListResourceRecordSets"
         ]
@@ -110,13 +122,13 @@ resource "aws_iam_role" "external_dns_role" {
       {
         Effect = "Allow"
         Principal = {
-          Federated = var.oidc_provider_arn
+          Federated = var.eks_oidc_provider_arn
         }
         Action = "sts:AssumeRoleWithWebIdentity"
         Condition = {
           StringEquals = {
-            "${var.oidc_provider_url}:sub" = "system:serviceaccount:${var.external_dns_service_account_namespace}:${var.external_dns_service_account_name}"
-            "${var.oidc_provider_url}:aud" = "sts.amazonaws.com"
+            "${var.eks_oidc_provider_url}:sub" = "system:serviceaccount:${var.external_dns_service_account_namespace}:${var.external_dns_service_account_name}"
+            "${var.eks_oidc_provider_url}:aud" = "sts.amazonaws.com"
           }
         }
       }
@@ -133,8 +145,14 @@ resource "aws_iam_policy" "external_dns_policy" {
       {
         Effect = "Allow"
         Action = [
+          "route53:ListHostedZones"
+        ]
+        Resource = "*"
+      },
+      {
+        Effect = "Allow"
+        Action = [
           "route53:ChangeResourceRecordSets",
-          "route53:ListHostedZones",
           "route53:ListResourceRecordSets"
         ]
         Resource = var.route53_hosted_zone_arns
@@ -185,15 +203,15 @@ resource "aws_iam_role" "cluster_autoscaler_role" {
       {
         Effect = "Allow"
         Principal = {
-          Federated = var.oidc_provider_arn
+          Federated = var.eks_oidc_provider_arn
         }
         Action = "sts:AssumeRoleWithWebIdentity"
         Condition = {
           StringLike = {
-            "${var.oidc_provider_url}:sub" = "system:serviceaccount:${var.cluster_autoscaler_service_account_namespace}:${var.cluster_autoscaler_service_account_name}"
+            "${var.eks_oidc_provider_url}:sub" = "system:serviceaccount:${var.cluster_autoscaler_service_account_namespace}:${var.cluster_autoscaler_service_account_name}"
           }
           StringEquals = {
-            "${var.oidc_provider_url}:aud" = "sts.amazonaws.com"
+            "${var.eks_oidc_provider_url}:aud" = "sts.amazonaws.com"
           }
         }
       }

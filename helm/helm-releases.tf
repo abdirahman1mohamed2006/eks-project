@@ -9,6 +9,7 @@ resource "helm_release" "ingress_nginx" {
   values = [
     file("${path.module}/values/ingress-nginx.yaml")
   ]
+
 }
 
 resource "helm_release" "cert_manager" {
@@ -20,9 +21,11 @@ resource "helm_release" "cert_manager" {
   create_namespace = true
 
   values = [
-    file("${path.module}/values/cert-manager.yaml")
+    file("${path.module}/values/cert-manager/cert-manager.yaml")
   ]
 }
+
+
 
 resource "helm_release" "external_dns" {
   name       = "external-dns"
@@ -59,6 +62,6 @@ resource "helm_release" "argocd" {
   create_namespace = true
 
   values = [
-    file("${path.module}/values/argo-cd.yaml")
+    file("${path.module}/values/argo-cd/argo-cd.yaml")
   ]
 }

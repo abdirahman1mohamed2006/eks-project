@@ -12,6 +12,9 @@ sources:
 domainFilters:
   - abdirahman.forum
 
+extraArgs:
+  - --zone-id-filter=Z10354822X25ZQ06MIGTG
+
 txtOwnerId: external-dns
 policy: sync
 
@@ -19,4 +22,4 @@ serviceAccount:
   create: true
   name: external-dns
   annotations:
-    eks.amazonaws.com/role-arn: arn:aws:iam::820242908024:role/externaldns
+    eks.amazonaws.com/role-arn: arn:aws:iam::292681319569:role/externaldns

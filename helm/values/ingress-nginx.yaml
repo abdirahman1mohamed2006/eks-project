@@ -6,8 +6,8 @@ controller:
     name: nginx
     enabled: true
     default: true
-  metrics:
+  metrics:           # this turns on the prometheus metrics such as latency and request count
     enabled: true
     serviceMonitor:
-      enabled: true
+      enabled: false
 

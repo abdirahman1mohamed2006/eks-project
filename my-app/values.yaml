@@ -4,9 +4,9 @@
 replicaCount: 3
 
 image:
-  repository: nginx
+  repository: 292681319569.dkr.ecr.eu-west-1.amazonaws.com/eks-assignment
   pullPolicy: IfNotPresent
-  tag: ""
+  tag: "latest"
 
 # Service Account Configuration
 serviceAccount:
@@ -22,12 +22,12 @@ resources: {}
 service:
   type: ClusterIP
   port: 80
-  targetPort: 3000
+  targetPort: 80
 
 # Ingress Configuration
 ingress:
-  enabled: false
-  className: ""
+  enabled: true
+  className: "nginx"
   annotations:
     cert-manager.io/cluster-issuer: "letsencrypt-prod"
     external-dns.alpha.kubernetes.io/hostname: "abdirahman.forum"

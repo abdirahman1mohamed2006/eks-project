@@ -10,7 +10,7 @@ serviceAccount:
   create: true
   name: cert-manager
   annotations:
-    eks.amazonaws.com/role-arn: arn:aws:iam::<aws-account-id>:role/cert-manager
+    eks.amazonaws.com/role-arn: arn:aws:iam::292681319569:role/cert-manager
 
 resources:
   requests:
