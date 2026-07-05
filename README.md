@@ -58,6 +58,10 @@ EKS/
 │       └── VPC/
 └── README.md
 ```
+## Architecture :
+<img width="1536" height="1024" alt="image" src="https://github.com/user-attachments/assets/99186299-c6c8-4221-8b8c-9bd3e8e36447" />
+
+
 
 ## Local Setup
 
