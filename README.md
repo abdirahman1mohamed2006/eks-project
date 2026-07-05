@@ -131,20 +131,17 @@ This project finished with:
 ### Cluster Health Screnshot:
 
 
-```markdown
+
 <img width="1506" height="382" alt="Cluster Health" src="https://github.com/user-attachments/assets/710ca817-71be-4f3c-a155-67998d35f038" />
 
 
-```
 
 
 ### Healthy Nodes
 
 
-```markdown
 <img width="1500" height="381" alt="Nodes" src="https://github.com/user-attachments/assets/07a5ee6a-70b9-4e64-b5df-a3da8d389528" />
 
-```
 
 
 
@@ -158,18 +155,15 @@ Prometheus collects cluster metrics and Grafana visualizes them through dashboar
 ### Argo CD
 
 
-```markdown
 <img width="1895" height="945" alt="ArgoCD" src="https://github.com/user-attachments/assets/e2db450d-9da3-4bdd-a6e8-ede75315b70a" />
 
-```
 
 ### Grafana
 
 
-```markdown
 <img width="1877" height="902" alt="Grafana" src="https://github.com/user-attachments/assets/03ea2a23-2efc-4999-8b1e-759d578481ea" />
 
-```
+
 
 ## Problems I Overcame
 
@@ -187,14 +181,12 @@ Prometheus collects cluster metrics and Grafana visualizes them through dashboar
 ## CI/CD Proof
 
 
-```markdown
 <img width="790" height="97" alt="terraform destroy" src="https://github.com/user-attachments/assets/0e97771e-8019-41f4-b8ee-0448b4a0bada" />
 <img width="797" height="92" alt="dockerbuild" src="https://github.com/user-attachments/assets/76009f58-6049-4ae9-a60f-68e9e3d12192" />
 <img width="817" height="97" alt="image" src="https://github.com/user-attachments/assets/10d4bb17-cca9-4fff-93e3-3b4371ca52b4" />
 
 
 
-```
 
 ## Useful Commands
 
